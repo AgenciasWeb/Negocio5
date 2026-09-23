@@ -59,6 +59,9 @@ p {
     transition: all 0.3s ease;
     border: 1px solid transparent;
     font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Efecto hover: Sutil cambio de fondo y borde dorado */
@@ -78,7 +81,7 @@ p {
     border-color: #4285F4;
 }
 .btn-google:hover {
-    background-color: rgba(66, 133, 244, 0.1); /* Solo un toque del color original */
+    background-color: rgba(66, 133, 244, 0.1);
 }
 
 .btn-whatsapp { 
@@ -95,7 +98,114 @@ p {
     background-color: rgba(225, 48, 108, 0.1);
 }
 
-/* Asegurar que los íconos de los botones no cambien de color */
-.btn i {
-    font-size: 20px;
+/* Botón de Fidelización */
+.btn-fidelizacion {
+    border-color: #c5a059;
+    background-color: rgba(197, 160, 89, 0.1);
+}
+.btn-fidelizacion:hover {
+    background-color: rgba(197, 160, 89, 0.2);
+}
+
+/* Estilos para el Modal / Ventana Emergente */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #a0a0a0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+/* Inputs y botones internos del modal */
+.modal-content input[type="tel"] {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-content input[type="tel"]:focus {
+    border-color: #c5a059;
+    outline: none;
+}
+
+.btn-consultar, .btn-volver {
+    background-color: #c5a059;
+    color: #111111;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.btn-consultar:hover, .btn-volver:hover {
+    background-color: #d6b26d;
+}
+
+/* Visualización del cartoncito de cruces */
+#cartonCruces {
+    font-size: 24px;
+    letter-spacing: 4px;
+    margin: 20px 0;
+    background: #111111;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+}
+
+.btn-volver {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #333333;
+    color: #a0a0a0;
+}
+
+.btn-volver:hover {
+    background: #242424;
+    color: #ffffff;
+    border-color: #c5a059;
 }
