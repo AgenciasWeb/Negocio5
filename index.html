@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - La Bosch</title>
-    <!-- Ruta corregida para que GitHub Pages encuentre el CSS sin errores -->
-    <link rel="stylesheet" href="/Negocio/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -13,138 +16,26 @@
         <h2>¡Hola! 👋</h2>
         <p>Elegí una opción para conectar con nosotros:</p>
 
-        <!-- Google -->
+        <!-- Botón de Google -->
         <a href="https://search.google.com/local/writereview?placeid=ChIJKwK-dLy5vJURDs5I4phVjVs" target="_blank" rel="noopener noreferrer" class="btn btn-google">
             ⭐ Valórranos en Google
         </a>
 
-        <!-- WhatsApp -->
+        <!-- Botón de WhatsApp -->
         <a href="https://wa.me/5491136282553" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
             💬 Escribinos por WhatsApp
         </a>
 
-        <!-- Instagram -->
+        <!-- Botón de Instagram -->
         <a href="https://instagram.com/chao.bau99" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
             📸 Seguinos en Instagram
         </a>
 
-        <!-- Botón de Fidelización -->
-        <button onclick="abrirFidelizacion()" class="btn btn-fidelizacion">
+        <!-- Botón de Fidelización (Te lleva a la otra página) -->
+        <a href="fidelizacion.html" class="btn btn-fidelizacion">
             🎁 Mis Cruces (Fidelización)
-        </button>
+        </a>
     </main>
 
-    <!-- Modal / Pantalla flotante de Fidelización -->
-    <div id="modalFidelizacion" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarFidelizacion()">&times;</span>
-            <h2>Club de Fidelización</h2>
-            <p>Ingresá tu número de WhatsApp para ver tus cruces acumuladas.</p>
-            
-            <!-- Formulario de Ingreso -->
-            <div id="login-fidelizacion">
-                <input type="tel" id="telefonoCliente" placeholder="Ej: 1123456789">
-                <button onclick="consultarCruces()" class="btn-consultar">Ver mis cruces</button>
-            </div>
-
-            <!-- Panel de Resultados (Oculto inicialmente) -->
-            <div id="panelCruces" style="display: none;">
-                <h3>Hola, <span id="telDisplay"></span></h3>
-                <p>Tus cruces actuales:</p>
-                <div id="cartonCruces">❌ ❌ ⭕ ⭕ ⭕ ⭕ ⭕ ⭕</div>
-                <p id="mensajePremio"></p>
-                <button onclick="reiniciarConsulta()" class="btn-volver">Cambiar número</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script de Firebase y lógica del sistema -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-        // Configuración de Firebase integrada con tu proyecto de Google
-        const firebaseConfig = {
-            apiKey: "AIzaSyDEX0VO5yl_rEdIShKG3J3mSSJR2EGLLY",
-            authDomain: "agenciasweb.firebaseapp.com",
-            projectId: "agenciasweb",
-            storageBucket: "agenciasweb.appspot.com",
-            messagingSenderId: "925400163595",
-            appId: "1:925400163595:web:867847260d16f43c80ea86",
-            measurementId: "G-BN4WEATHER"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Hacemos globales las funciones para que funcionen con los onclick del HTML
-        window.abrirFidelizacion = function() {
-            document.getElementById('modalFidelizacion').style.display = 'flex';
-        }
-
-        window.cerrarFidelizacion = function() {
-            document.getElementById('modalFidelizacion').style.display = 'none';
-        }
-
-        window.reiniciarConsulta = function() {
-            document.getElementById('panelCruces').style.display = 'none';
-            document.getElementById('login-fidelizacion').style.display = 'block';
-            document.getElementById('telefonoCliente').value = '';
-        }
-
-        window.consultarCruces = async function() {
-            const telefono = document.getElementById('telefonoCliente').value.trim();
-            if (!telefono) {
-                alert("Por favor ingresa tu número de teléfono.");
-                return;
-            }
-
-            try {
-                const docRef = doc(db, "clientes", telefono);
-                const docSnap = await getDoc(docRef);
-
-                let crucesActuales = 0;
-
-                if (docSnap.exists()) {
-                    crucesActuales = docSnap.data().cruces;
-                } else {
-                    // Si el cliente no existe, lo creamos automáticamente con 0 cruces
-                    await setDoc(docRef, { cruces: 0 });
-                    crucesActuales = 0;
-                }
-
-                // Cambiar de vista dentro del modal
-                document.getElementById('login-fidelizacion').style.display = 'none';
-                document.getElementById('panelCruces').style.display = 'block';
-                document.getElementById('telDisplay').innerText = telefono;
-
-                actualizarVisualCarton(crucesActuales);
-            } catch (error) {
-                console.error("Error al conectar con Firebase: ", error);
-                alert("Hubo un error al consultar tus datos. Verificá tu conexión.");
-            }
-        }
-
-        function actualizarVisualCarton(cantidad) {
-            let cartonHTML = "";
-            for (let i = 0; i < 8; i++) {
-                if (i < cantidad) {
-                    cartonHTML += "❌ "; 
-                } else {
-                    cartonHTML += "⭕ "; 
-                }
-            }
-            document.getElementById('cartonCruces').innerText = cartonHTML;
-
-            const mensaje = document.getElementById('mensajePremio');
-            if (cantidad >= 8) {
-                mensaje.innerText = "🎉 ¡Felicidades! Tenés una compra GRATIS para canjear en el local.";
-                mensaje.style.color = "#4CD964";
-            } else {
-                mensaje.innerText = `Te faltan ${8 - cantidad} cruces para tu premio.`;
-                mensaje.style.color = "#a0a0a0";
-            }
-        }
-    </script>
 </body>
 </html>
