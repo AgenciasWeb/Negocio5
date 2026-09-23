@@ -1,8 +1,8 @@
 /* Configuración general: Fondo limpio y sofisticado */
 body {
-    font-family: 'Playfair Display', serif; /* Tipografía principal con serifa elegante */
-    background-color: #111111; /* Fondo negro profundo para contraste */
-    color: #e0e0e0; /* Texto gris muy claro, casi blanco */
+    font-family: 'Playfair Display', serif;
+    background-color: #111111;
+    color: #e0e0e0;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -12,38 +12,38 @@ body {
     box-sizing: border-box;
 }
 
-/* Tarjeta principal: Sólida, con borde sutil y sobria */
+/* Tarjeta principal */
 .card {
-    background: #1a1a1a; /* Fondo de la tarjeta ligeramente más claro que el body */
-    border: 1px solid #333333; /* Borde metálico oscuro muy fino */
+    background: #1a1a1a;
+    border: 1px solid #333333;
     padding: 45px 30px;
-    border-radius: 8px; /* Bordes menos redondeados para mayor formalidad */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra profunda pero difusa */
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 360px;
     text-align: center;
 }
 
-/* Título: Estilo editorial y exclusivo */
+/* Título */
 h2 {
     color: #f5f5f5;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 28px;
-    font-weight: 400; /* Peso ligero para elegancia */
+    font-weight: 400;
     font-family: 'Playfair Display', serif;
 }
 
-/* Párrafo: Minimalista */
+/* Párrafo */
 p {
     color: #a0a0a0;
     font-size: 15px;
     margin-bottom: 35px;
     line-height: 1.6;
-    font-family: 'Inter', sans-serif; /* Combinación de tipografías: Sans para legibilidad */
+    font-family: 'Inter', sans-serif;
 }
 
-/* Botones: Elegancia minimalista con toques de color refinado */
+/* Botones base */
 .btn {
     display: flex;
     align-items: center;
@@ -53,7 +53,7 @@ p {
     text-decoration: none;
     padding: 18px;
     margin: 16px 0;
-    border-radius: 4px; /* Botones rectangulares */
+    border-radius: 4px;
     font-weight: 500;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -62,26 +62,24 @@ p {
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    background-color: transparent; /* Evita que aparezca el fondo blanco */
 }
 
-/* Efecto hover: Sutil cambio de fondo y borde dorado */
 .btn:hover {
     transform: translateY(-2px);
-    border-color: #c5a059; /* Borde color Oro al pasar el mouse */
-    background-color: #242424; /* Fondo ligeramente más claro en hover */
-    color: #c5a059; /* El texto también se vuelve dorado */
 }
 
 .btn:active {
     transform: scale(0.99);
 }
 
-/* Estilos específicos de botones (colores sutiles e integrados) */
+/* Estilos específicos de botones */
 .btn-google { 
     border-color: #4285F4;
 }
 .btn-google:hover {
     background-color: rgba(66, 133, 244, 0.1);
+    color: #4285F4;
 }
 
 .btn-whatsapp { 
@@ -89,6 +87,7 @@ p {
 }
 .btn-whatsapp:hover {
     background-color: rgba(37, 211, 102, 0.1);
+    color: #25D366;
 }
 
 .btn-instagram { 
@@ -96,15 +95,18 @@ p {
 }
 .btn-instagram:hover {
     background-color: rgba(225, 48, 108, 0.1);
+    color: #E1306C;
 }
 
-/* Botón de Fidelización */
+/* Botón de Fidelización (Elegante, borde dorado) */
 .btn-fidelizacion {
     border-color: #c5a059;
-    background-color: rgba(197, 160, 89, 0.1);
+    color: #ffffff;
 }
 .btn-fidelizacion:hover {
-    background-color: rgba(197, 160, 89, 0.2);
+    background-color: rgba(197, 160, 89, 0.15);
+    border-color: #c5a059;
+    color: #c5a059;
 }
 
 /* Estilos para el Modal / Ventana Emergente */
