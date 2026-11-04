@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/tarjeta", "destination": "https://fidelizacion-cyan.vercel.app/?b=academias-paola", "permanent": false },
+    { "source": "/turnos", "destination": "https://fidelizacion-cyan.vercel.app/?b=academias-paola&turnos=1", "permanent": false },
+    { "source": "/panel", "destination": "https://vecino-negocios.vercel.app/?b=academias-paola", "permanent": false },
+    { "source": "/fidelizacion.html", "destination": "https://fidelizacion-cyan.vercel.app/?b=academias-paola", "permanent": false }
+  ]
+}
